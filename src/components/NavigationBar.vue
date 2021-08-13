@@ -1,3 +1,3 @@
 <template>
-  <nav>Navigation bar</nav>
+  <div class="container">Navigation bar</div>
 </template>
