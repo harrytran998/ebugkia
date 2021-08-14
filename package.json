@@ -4,6 +4,7 @@
     "prod": "yarn run build && yarn run server:prod",
     "build": "vite build && vite build --ssr",
     "server": "ts-node ./src/server",
+    "vercel-build": "vite build && vite build --ssr",
     "server:prod": "cross-env NODE_ENV=production ts-node ./src/server"
   },
   "dependencies": {
