@@ -1,11 +1,17 @@
 <template>
   <div class="container mx-auto">
-    <div v-for="post in props.postsResponse.posts" :key="post.ID">
-      <h3 class="text-gray-800 font-medium">
-        {{ post.title }}
-      </h3>
-      <blockquote v-html="post.excerpt" />
-      <div class="flex items-center">
+    <div
+      v-for="post in props.postsResponse.posts"
+      :key="post.ID"
+      @click="() => onClick(post.slug)"
+    >
+      <Link :to="`/p/${post.slug}`">
+        <h3 class="text-gray-800 font-medium">
+          {{ post.title }}
+        </h3>
+        <blockquote v-html="post.excerpt" />
+      </Link>
+      <div class="flex items-center mt-4">
         <div class="flex-shrink-0">
           <span class="sr-only">{{ post.author.nice_name }}</span>
           <img
@@ -30,9 +36,15 @@
 </template>
 
 <script setup lang="ts">
+import { navigate } from "vite-plugin-ssr/client/router";
+
 import { PostsResponse } from "~/services";
 
 const props = defineProps<{
   postsResponse: PostsResponse;
 }>();
+
+const onClick = (slug: string) => {
+  navigate(`/p/${slug}`);
+};
 </script>

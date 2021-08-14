@@ -16,6 +16,7 @@ const config: UserConfig = {
     SSR(),
     ViteComponents({
       globalComponentsDeclaration: true,
+      extensions: ["vue", "ts"],
     }),
     WindiCSS({
       scan: {

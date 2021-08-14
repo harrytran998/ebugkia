@@ -1,13 +1,33 @@
 import "virtual:windi.css";
-import { getPage } from "vite-plugin-ssr/client";
+import { useClientRouter } from "vite-plugin-ssr/client/router";
 import { createApp } from "./app";
 import { PageContext } from "./types";
 import "./styles/main.css";
 
-hydrate();
+let app: ReturnType<typeof createApp>;
 
-async function hydrate() {
-  const pageContext = (await getPage()) as PageContext;
-  const app = createApp(pageContext);
-  app.mount("#app");
+const { hydrationPromise } = useClientRouter({
+  render(pageContext: PageContext) {
+    if (!app) {
+      app = createApp(pageContext);
+      app.mount("#app");
+    } else {
+      app.changePage(pageContext);
+    }
+  },
+  onTransitionStart,
+  onTransitionEnd,
+});
+
+hydrationPromise.then(() => {
+  console.log("Hydration finished; page is now interactive.");
+});
+
+function onTransitionStart() {
+  console.log("Page transition start");
+  // For example:
+}
+function onTransitionEnd() {
+  console.log("Page transition end");
+  // For example:
 }

@@ -3,13 +3,10 @@ import { html } from "vite-plugin-ssr";
 import { createApp } from "./app";
 import { PageContext } from "./types";
 
-export { render };
-export { passToClient };
-
 // See https://vite-plugin-ssr.com/data-fetching
-const passToClient = ["pageProps", "routeParams"];
+export const passToClient = ["pageProps", "documentProps", "routeParams"];
 
-async function render(pageContext: PageContext) {
+export async function render(pageContext: PageContext) {
   const app = createApp(pageContext);
   const appHtml = await renderToString(app);
 

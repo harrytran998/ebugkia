@@ -2,7 +2,7 @@
   <header>
     <div class="container mx-auto mb-6">
       <div class="flex justify-between items-center py-4">
-        <div href="/" class="px-2 flex lg:px-0 items-center">
+        <Link to="/" class="px-2 flex lg:px-0 items-center">
           <div class="flex-shrink-0 flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -158,22 +158,47 @@
             <h3 class="font-medium text-xl text-gray-700">EBugKia</h3>
             <p>Cuộc sống không thiếu gì ngoài bug</p>
           </div>
-        </div>
+        </Link>
         <ul class="ml-auto flex flex-row">
-          <li>
-            <a class="px-4 py-2" href="/lap-trinh">Lập trình</a>
-          </li>
-          <li>
-            <a class="px-4 py-2" href="/cuoc-song">Cuộc sống</a>
-          </li>
-          <li>
-            <a class="px-4 py-2" href="/ky-nang">Kỹ năng</a>
-          </li>
-          <li>
-            <a class="px-4 py-2" href="/agile">Agile</a>
+          <li v-for="category in categories" :key="category.ID" class="px-3">
+            <Link
+              :to="`/c/${category.slug}`"
+              :class="[
+                'border-b-2 border-transparent py-2',
+                { 'border-red-500': category.active },
+              ]"
+            >
+              {{ category.name }}
+            </Link>
           </li>
         </ul>
       </div>
     </div>
   </header>
 </template>
+
+<script setup lang="ts">
+const categories = [
+  {
+    ID: 1,
+    name: "Lập trình",
+    slug: "lap-trinh",
+    active: true,
+  },
+  {
+    ID: 2,
+    name: "Cuộc sống",
+    slug: "cuoc-song",
+  },
+  {
+    ID: 3,
+    name: "Kỹ năng",
+    slug: "ky-nang",
+  },
+  {
+    ID: 4,
+    name: "Agile",
+    slug: "agile",
+  },
+];
+</script>

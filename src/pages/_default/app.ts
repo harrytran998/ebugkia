@@ -1,30 +1,57 @@
-import { createSSRApp, defineComponent, h } from "vue";
+import {
+  App,
+  createSSRApp,
+  defineComponent,
+  h,
+  markRaw,
+  reactive,
+  isReactive,
+} from "vue";
 import PageLayout from "./PageLayout.vue";
-import { PageContext } from "./types";
+import { PageContext, Component } from "./types";
 
-export { createApp };
+type ChangePage = (newPageContext: PageContext) => void;
+type MyApp = App & { changePage: ChangePage };
 
-function createApp(pageContext: PageContext) {
-  const { Page, pageProps } = pageContext;
+export function createApp(pageContext: PageContext): MyApp {
+  let rootComponent: Component;
   const PageWithLayout = defineComponent({
+    data: () => ({
+      Page: markRaw(pageContext.Page),
+      pageProps: markRaw(pageContext.pageProps || {}),
+    }),
+    created() {
+      rootComponent = this;
+    },
+    methods: {
+      renderNewPage(Page: any, pageProps: any) {
+        this.Page = Page;
+        this.pageProps = pageProps;
+      },
+    },
     render() {
       return h(
         PageLayout,
         {},
         {
-          default() {
-            return h(Page, pageProps || {});
+          default: () => {
+            return h(this.Page, this.pageProps);
           },
         }
       );
     },
   });
 
+  const changePage = (newPageContext: PageContext) => {
+    rootComponent.renderNewPage(
+      markRaw(newPageContext.Page),
+      markRaw(newPageContext.pageProps || {})
+    );
+  };
   const app = createSSRApp(PageWithLayout);
 
-  // We make `pageContext.routeParams` available in all components as `$routeParams`
-  // (e.g. `$routeParams.movieId` for a Route String `/movie/:movieId`).
+  (app as MyApp).changePage = changePage;
   app.config.globalProperties.$routeParams = pageContext.routeParams;
 
-  return app;
+  return app as MyApp;
 }
