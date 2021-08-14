@@ -1,5 +1,6 @@
 import "virtual:windi.css";
 import { useClientRouter } from "vite-plugin-ssr/client/router";
+import NProgress from "nprogress";
 import { createApp } from "./app";
 import { PageContext } from "./types";
 import "./styles/main.css";
@@ -24,10 +25,8 @@ hydrationPromise.then(() => {
 });
 
 function onTransitionStart() {
-  console.log("Page transition start");
-  // For example:
+  NProgress.start();
 }
 function onTransitionEnd() {
-  console.log("Page transition end");
-  // For example:
+  NProgress.done();
 }

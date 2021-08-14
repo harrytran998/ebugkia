@@ -1,12 +1,4 @@
-import {
-  App,
-  createSSRApp,
-  defineComponent,
-  h,
-  markRaw,
-  reactive,
-  isReactive,
-} from "vue";
+import { App, createSSRApp, defineComponent, h, markRaw } from "vue";
 import PageLayout from "./PageLayout.vue";
 import { PageContext, Component } from "./types";
 
