@@ -3,7 +3,9 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Link: typeof import('./src/components/Link.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
+    RouterLink: typeof import('./src/components/RouterLink.vue')['default']
   }
 }
 
