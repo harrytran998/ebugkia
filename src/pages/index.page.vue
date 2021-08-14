@@ -3,6 +3,7 @@
     <div
       v-for="post in props.postsResponse.posts"
       :key="post.ID"
+      class="mb-6"
       @click="() => onClick(post.slug)"
     >
       <Link :to="`/p/${post.slug}`">
