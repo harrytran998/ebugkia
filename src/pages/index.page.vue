@@ -15,11 +15,7 @@
       <div class="flex items-center mt-4">
         <div class="flex-shrink-0">
           <span class="sr-only">{{ post.author.nice_name }}</span>
-          <img
-            class="h-10 w-10 rounded-full"
-            :src="post.author.avatar_URL"
-            alt=""
-          />
+          <img class="h-10 w-10 rounded-full" :src="post.author.avatar_URL" alt="" />
         </div>
         <div class="ml-3">
           <p class="text-sm font-medium text-gray-900">
@@ -37,9 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import { navigate } from "vite-plugin-ssr/client/router";
+import { navigate } from 'vite-plugin-ssr/client/router';
 
-import { PostsResponse } from "~/services";
+import { PostsResponse } from '@/services';
 
 const props = defineProps<{
   postsResponse: PostsResponse;

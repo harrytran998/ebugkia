@@ -1,5 +1,5 @@
-import { navigate } from "vite-plugin-ssr/client/router";
-import { defineComponent, h, PropType } from "vue";
+import { navigate } from 'vite-plugin-ssr/client/router';
+import { defineComponent, h, PropType } from 'vue';
 
 const Link = defineComponent({
   props: {
@@ -15,12 +15,12 @@ const Link = defineComponent({
     };
     return () => {
       return h(
-        "a",
+        'a',
         {
           href: props.to,
           onClick,
         },
-        children
+        children,
       );
     };
   },

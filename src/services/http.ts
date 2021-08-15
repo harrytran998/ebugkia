@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch, { Response } from 'node-fetch';
 
 export interface Config {
   baseUrl: string;
@@ -14,8 +14,8 @@ export class HttpClient {
     };
   }
 
-  async handleResponse<T>(response: Response): Promise<T> {
-    const data = await response.json();
+  async handleResponse<T extends { message?: any }>(response: Response): Promise<T> {
+    const data = (await response.json()) as T;
     if (!response.ok) {
       throw Error(data.message);
     }
@@ -23,21 +23,21 @@ export class HttpClient {
   }
 
   buildUrl(url: string): string {
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       return url;
     }
 
-    const relativeUrl = url.startsWith("/") ? url.substring(1) : url;
+    const relativeUrl = url.startsWith('/') ? url.substring(1) : url;
 
     return `${this.config.baseUrl}/${relativeUrl}`;
   }
 
   async get<T>(url: string): Promise<T> {
     const requestOptions = {
-      method: "GET",
+      method: 'GET',
     };
-    return fetch(this.buildUrl(url), requestOptions).then((response) =>
-      this.handleResponse(response)
+    return fetch(this.buildUrl(url), requestOptions).then(response =>
+      this.handleResponse(response),
     );
   }
 }

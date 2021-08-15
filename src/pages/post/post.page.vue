@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { FullPost } from "~/services";
+import { FullPost } from '@/services';
 
 defineProps<{
   post: FullPost;

@@ -1,8 +1,8 @@
-import dayjs from "dayjs";
-import { HttpClient } from "./http";
+import { formatDate } from '@/utils';
+import { HttpClient } from './http';
 
 const wordpressApi = new HttpClient({
-  baseUrl: "https://public-api.wordpress.com",
+  baseUrl: 'https://public-api.wordpress.com',
 });
 
 export interface FetchPostsOption extends Record<string, any> {
@@ -22,7 +22,7 @@ export interface FetchPostsOption extends Record<string, any> {
    * Returns specified fields only. Comma-separated list. Example: fields=ID,title
    */
   fields?: string | string[];
-  order?: "DESC" | "ASC";
+  order?: 'DESC' | 'ASC';
   /**
     date: (default) Order by the created time of each post.
     modified: Order by the modified time of each post.
@@ -82,35 +82,31 @@ export interface FullPost extends Post {
   content: string;
 }
 
-const normalizePost = <T>(post: any): T => {
-  return {
-    ...post,
-    formattedDate: dayjs(post.date).format("DD/MM/YYYY"),
-  };
-};
+const normalizePost = <T>(post: any): T => ({
+  ...post,
+  formattedDate: formatDate(post.date),
+});
 
 const defaultPostFields = [
-  "ID",
-  "date",
-  "title",
-  "slug",
-  "excerpt",
-  "author",
-  "password",
-  "type",
-  "featured_image",
-  "tags",
-  "categories",
+  'ID',
+  'date',
+  'title',
+  'slug',
+  'excerpt',
+  'author',
+  'password',
+  'type',
+  'featured_image',
+  'tags',
+  'categories',
 ];
 
-export const fetchPosts = async (
-  params: FetchPostsOption
-): Promise<PostsResponse> => {
-  params.fields = defaultPostFields.join(",");
+export const fetchPosts = async (params: FetchPostsOption): Promise<PostsResponse> => {
+  params.fields = defaultPostFields.join(',');
   const queryString = new URLSearchParams(params).toString();
 
   const response: PostsResponse = await wordpressApi.get(
-    `/rest/v1.1/sites/ebugkia.wordpress.com/posts?${queryString}`
+    `/rest/v1.1/sites/ebugkia.wordpress.com/posts?${queryString}`,
   );
   return {
     ...response,
@@ -119,9 +115,9 @@ export const fetchPosts = async (
 };
 
 export const getPostBySlug = async (slug: string): Promise<FullPost> => {
-  const fields = defaultPostFields.concat("content").join(",");
+  const fields = defaultPostFields.concat('content').join(',');
   const post: FullPost = await wordpressApi.get(
-    `/rest/v1.1/sites/ebugkia.wordpress.com/posts/slug:${slug}?fields=${fields}`
+    `/rest/v1.1/sites/ebugkia.wordpress.com/posts/slug:${slug}?fields=${fields}`,
   );
   return normalizePost<FullPost>(post);
 };
