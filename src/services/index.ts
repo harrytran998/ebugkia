@@ -1,1 +1,1 @@
-export * from './wordpress'
+export * from './wordpress';

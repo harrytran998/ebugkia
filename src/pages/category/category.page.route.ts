@@ -1,1 +1,1 @@
-export default "/c/:slug";
+export default '/c/:slug';

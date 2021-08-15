@@ -1,6 +1,6 @@
-import { App, createSSRApp, defineComponent, h, markRaw } from "vue";
-import PageLayout from "./PageLayout.vue";
-import { PageContext, Component } from "./types";
+import { App, createSSRApp, defineComponent, h, markRaw } from 'vue';
+import PageLayout from './PageLayout.vue';
+import { PageContext, Component } from './types';
 
 type ChangePage = (newPageContext: PageContext) => void;
 type MyApp = App & { changePage: ChangePage };
@@ -29,7 +29,7 @@ export function createApp(pageContext: PageContext): MyApp {
           default: () => {
             return h(this.Page, this.pageProps);
           },
-        }
+        },
       );
     },
   });
@@ -37,7 +37,7 @@ export function createApp(pageContext: PageContext): MyApp {
   const changePage = (newPageContext: PageContext) => {
     rootComponent.renderNewPage(
       markRaw(newPageContext.Page),
-      markRaw(newPageContext.pageProps || {})
+      markRaw(newPageContext.pageProps || {}),
     );
   };
   const app = createSSRApp(PageWithLayout);

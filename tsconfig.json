@@ -6,19 +6,13 @@
     "moduleResolution": "Node",
     "target": "ES2017",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "paths": {
-      "~/*": ["src/*"]
-    }
-  },
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
+      "@/*": ["src/*"]
+    },
+    "types": ["vite/client", "vite-svg-loader", "jest"]
   }
 }

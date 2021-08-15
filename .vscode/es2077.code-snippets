@@ -1,0 +1,20 @@
+{
+  "Console log": {
+    "prefix": "clg",
+    "body": ["console.log($1)"],
+    "description": "Console log"
+  },
+  "Console Trace": {
+    "prefix": "clt",
+    "body": ["console.trace($1)"],
+    "description": "Console trace"
+  },
+  "Export * from XXX": {
+    "prefix": "exsao",
+    "body": ["export * from './${0}';"]
+  },
+  "Export * from XXX + Type": {
+    "prefix": "exst",
+    "body": ["export * from './${0}';", "export * from './${0}.types';"]
+  }
+}
