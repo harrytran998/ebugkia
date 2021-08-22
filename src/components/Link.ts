@@ -10,9 +10,8 @@ const Link = defineComponent({
   },
   setup(props, { slots }) {
     const children = slots.default && slots.default();
-    const onClick = () => {
-      navigate(props.to);
-    };
+    const onClick = () => navigate(props.to);
+
     return () => {
       return h(
         'a',

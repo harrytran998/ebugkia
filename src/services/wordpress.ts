@@ -55,6 +55,12 @@ export interface FetchPostsOption extends Record<string, any> {
    * Return posts dated before the specified datetime.
    */
   before?: Date;
+  /**
+   * include: (default) Sticky posts are not excluded from the list.
+   * exclude: Sticky posts are excluded from the list.
+   * require: Only include sticky posts
+   */
+  sticky?: 'include' | 'exclude' | 'required';
 }
 
 export interface PostsResponse {
@@ -76,6 +82,7 @@ export interface Post {
   featured_image: string;
   author: Author;
   formattedDate: string;
+  categories: string[];
 }
 
 export interface FullPost extends Post {
@@ -85,6 +92,7 @@ export interface FullPost extends Post {
 const normalizePost = <T>(post: any): T => ({
   ...post,
   formattedDate: formatDate(post.date),
+  categories: Object.keys(post.categories),
 });
 
 const defaultPostFields = [
@@ -108,6 +116,7 @@ export const fetchPosts = async (params: FetchPostsOption): Promise<PostsRespons
   const response: PostsResponse = await wordpressApi.get(
     `/rest/v1.1/sites/ebugkia.wordpress.com/posts?${queryString}`,
   );
+  console.log(response.posts[1].categories);
   return {
     ...response,
     posts: response.posts.map<Post>(normalizePost),

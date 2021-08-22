@@ -40,4 +40,10 @@ const config: UserConfig = {
   },
 };
 
+function ssrTransformCustomDir() {
+  return {
+    props: [],
+    needRuntime: true,
+  };
+}
 export default config;

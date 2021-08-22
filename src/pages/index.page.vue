@@ -1,24 +1,24 @@
 <template>
   <div class="container mx-auto">
     <div
-      v-for="post in props.postsResponse.posts"
+      v-for="post in postsResponse.posts"
       :key="post.ID"
       class="mb-6"
       @click="() => onClick(post.slug)"
     >
       <Link :to="`/p/${post.slug}`">
-        <h3 class="text-gray-800 font-medium">
+        <h3 class="font-medium text-gray-700 prose-2xl">
           {{ post.title }}
         </h3>
         <blockquote v-html="post.excerpt" />
       </Link>
-      <div class="flex items-center mt-4">
+      <div class="flex mt-4 items-center">
         <div class="flex-shrink-0">
           <span class="sr-only">{{ post.author.nice_name }}</span>
-          <img class="h-10 w-10 rounded-full" :src="post.author.avatar_URL" alt="" />
+          <img class="rounded-full h-10 w-10" :src="post.author.avatar_URL" alt="" />
         </div>
         <div class="ml-3">
-          <p class="text-sm font-medium text-gray-900">
+          <p class="font-medium text-sm text-gray-900">
             <a href="#">{{ post.author.nice_name }}</a>
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">

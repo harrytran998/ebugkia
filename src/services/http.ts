@@ -17,7 +17,7 @@ export class HttpClient {
   async handleResponse<T extends { message?: any }>(response: Response): Promise<T> {
     const data = (await response.json()) as T;
     if (!response.ok) {
-      throw Error(data.message);
+      throw new Error(data.message);
     }
     return data;
   }
@@ -27,7 +27,7 @@ export class HttpClient {
       return url;
     }
 
-    const relativeUrl = url.startsWith('/') ? url.substring(1) : url;
+    const relativeUrl = url.startsWith('/') ? url.slice(1) : url;
 
     return `${this.config.baseUrl}/${relativeUrl}`;
   }

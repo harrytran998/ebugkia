@@ -2,17 +2,23 @@
     "version": "0.1",
     "words": [
         "attributify",
+        "crossorigin",
         "datauri",
+        "ebugkia",
         "esbuild",
         "harrytran",
+        "middlewares",
+        "msapplication",
         "multipass",
         "notranslate",
         "nprogress",
         "patreon",
+        "preconnect",
         "vercel",
         "vite",
         "vitejs",
         "vueuse",
+        "windi",
         "windicss"
     ]
 }

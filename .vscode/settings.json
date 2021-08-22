@@ -1,4 +1,7 @@
 {
   "editor.formatOnSave": true,
-  "editor.rulers": [100]
+  "editor.rulers": [100],
+  "windicss.sortOnSave": true,
+  "windicss.enableHoverPreview": true,
+  "scss.validate": false
 }
