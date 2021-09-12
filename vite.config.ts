@@ -28,7 +28,7 @@ const config: UserConfig = {
     WindiCSS({
       scan: {
         dirs: ['src/pages', 'src/components'],
-        fileExtensions: ['vue', 'js', 'ts', 'html'],
+        fileExtensions: ['vue'],
       },
     }),
   ],
