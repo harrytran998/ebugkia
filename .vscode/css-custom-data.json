@@ -1,0 +1,56 @@
+{
+  "atDirectives": [
+    {
+      "name": "@apply",
+      "description": "Use @apply to inline any existing utility classes into your style block.",
+      "references": [
+        {
+          "name": "Apply Documentation",
+          "url": "https://windicss.org/features/directives.html#apply"
+        }
+      ]
+    },
+    {
+      "name": "@layer",
+      "description": "The @layer directive makes sure the order of each class. Valid layers are base, components, and utilities.",
+      "references": [
+        {
+          "name": "Layers Documentation",
+          "url": "https://windicss.org/features/directives.html#layers"
+        }
+      ]
+    },
+    {
+      "name": "@screen",
+      "description": "The @screen directive allows you to create media queries that reference your breakpoints by name instead of duplicating their values in your own CSS.",
+      "references": [
+        {
+          "name": "Screen Documentation",
+          "url": "https://windicss.org/features/directives.html#screen"
+        }
+      ]
+    },
+    {
+      "name": "@variants",
+      "description": "You can generate screen variants, state variants, theme variants of your own utilities by wrapping their definitions in the @variants directive.",
+      "references": [
+        {
+          "name": "Variants Documentation",
+          "url": "https://windicss.org/features/directives.html#variants"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "theme",
+      "description": "The theme() function allows you to access your config values using dot notation.",
+      "references": [
+        {
+          "name": "Theme Documentation",
+          "url": "https://windicss.org/features/directives.html#theme"
+        }
+      ]
+    }
+  ]
+}

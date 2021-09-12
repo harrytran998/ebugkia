@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "editor.rulers": [100],
+  "windicss.sortOnSave": true,
+  "windicss.enableHoverPreview": true,
+  "scss.validate": false,
+  "scss.lint.unknownAtRules": "ignore",
+  "css.customData": [".vscode/css-custom-data.json"]
+}
