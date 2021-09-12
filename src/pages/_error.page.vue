@@ -9,7 +9,10 @@
   </div>
 </template>
 
-<script lang="ts">
-const props = ['is404']
-export default { props }
+<script setup lang="ts">
+const props = defineProps({
+  is404: {
+    type: Boolean,
+  },
+});
 </script>

@@ -1,11 +1,44 @@
-import { getPage } from 'vite-plugin-ssr/client'
-import { createApp } from './app'
-import { PageContext } from './types'
+import 'virtual:windi.css';
+import '@/styles/index.scss';
 
-hydrate()
+import { MotionPlugin } from '@vueuse/motion';
+import NProgress from 'nprogress';
+import { useClientRouter } from 'vite-plugin-ssr/client/router';
 
-async function hydrate() {
-  const pageContext = (await getPage()) as PageContext
-  const app = createApp(pageContext)
-  app.mount('#app')
+import { createApp } from './app';
+import { PageContext } from './types';
+
+let app: ReturnType<typeof createApp>;
+
+const { hydrationPromise } = useClientRouter({
+  render(pageContext: PageContext) {
+    if (!app) {
+      app = createApp(pageContext);
+      app.use(MotionPlugin);
+      app.mount('#app');
+    } else {
+      app.changePage(pageContext);
+    }
+  },
+  onTransitionStart,
+  onTransitionEnd,
+});
+
+hydrationPromise
+  .then(() => {
+    console.log('Hydration finished; page is now interactive.');
+  })
+  .catch(error => console.log(error));
+
+/**
+ *
+ */
+function onTransitionStart() {
+  NProgress.start();
+}
+/**
+ *
+ */
+function onTransitionEnd() {
+  NProgress.done();
 }
