@@ -28,11 +28,6 @@
 <script setup lang="ts">
 import BugIcon from '@/asset/images/svg/bug.svg';
 
-const props = defineProps<{
-  categories: any;
-}>();
-console.log('Navigation props', props);
-
 const categories = [
   {
     ID: 1,

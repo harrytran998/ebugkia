@@ -1,11 +1,12 @@
 import colors from 'windicss/colors';
 import { defineConfig } from 'windicss/helpers';
+import lineClamp from 'windicss/plugin/line-clamp';
 import typography from 'windicss/plugin/typography';
 
 export default defineConfig({
   darkMode: 'class',
   attributify: true,
-  plugins: [typography()],
+  plugins: [typography(), lineClamp],
   theme: {
     container: {
       padding: {

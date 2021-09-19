@@ -17,4 +17,6 @@ export const normalizeHtmlTag = (value: string): string =>
   value
     .replace(/<[^>]+>/gi, '')
     .replace(/&#8211;/g, '-')
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
     .replace(/&#8230;/g, '...');

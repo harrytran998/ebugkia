@@ -12,13 +12,6 @@ import { getCategories } from '@/services/wordpress';
 import { createApp } from './app';
 import { PageContext } from './types';
 
-export const addPageContext = async (pageContext: PageContextBuiltIn) => {
-  const categories = await getCategories();
-  console.log('addPageContext  👻  categories', categories);
-  const pageProps = { categories };
-  return { pageProps };
-};
-
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['pageProps', 'documentProps', 'routeParams'];
 

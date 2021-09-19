@@ -1,13 +1,9 @@
 <template>
   <div class="layout">
-    <navigation-bar :categories="categories" />
+    <navigation-bar />
     <slot />
     <the-footer />
   </div>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  categories: any;
-}>();
-</script>
+<script setup lang="ts"></script>

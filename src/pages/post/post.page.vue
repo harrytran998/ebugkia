@@ -1,12 +1,15 @@
 <template>
-  <div class="container mx-auto grid grid-cols-6">
-    <div class="col-span-4">
+  <div container="~" m="x-auto" grid="~ cols-6">
+    <div grid="col-span-4">
       <div class="mb-6">
         <h1 ref="titleRef" class="font-bold mb-4 text-gray-700 text-4xl">
-          {{ post.title }}
+          {{ normalizeHtmlTag(post.title) }}
         </h1>
       </div>
       <article class="text-base" style="content-visibility: auto" v-html="post.content" />
+    </div>
+    <div id="birds" grid="col-span-2">
+      <canvas width="340" height="340" style="width: 340px; height: 340px"></canvas>
     </div>
   </div>
 </template>
@@ -14,6 +17,8 @@
 <script setup lang="ts">
 import { useMotion } from '@vueuse/motion';
 import { ref } from 'vue';
+
+import { normalizeHtmlTag } from '@/utils/normalize';
 
 const props = defineProps<{
   post: FullPost;

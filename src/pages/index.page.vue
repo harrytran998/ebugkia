@@ -9,16 +9,22 @@
       bg="red-50"
       p="4"
       m="b-6"
+      display="flex"
+      grid="gap-4"
+      flex="col"
+      justify="between"
       transform="~ hover:scale-105"
       transition="all duration-800 delay-0 ease-oop-shi"
       @click="onClick(post.slug)"
     >
       <figure>
         <Link :to="`/p/${post.slug}`">
-          <h3 font="medium" text="gray-700" prose="2xl">
+          <h3 font="medium leading-8" text="gray-700" prose="2xl">
             {{ normalizeHtmlTag(post.title) }}
           </h3>
-          <blockquote>{{ normalizeHtmlTag(post.excerpt) }}</blockquote>
+          <blockquote class="mt-2 line-clamp-5">
+            {{ normalizeHtmlTag(post.excerpt) }}
+          </blockquote>
         </Link>
       </figure>
       <div flex="~" align="items-center">
@@ -34,11 +40,13 @@
             <time :datetime="`${formatDate(post.date, 'YYYY-MM-DD')}`">
               {{ post.formattedDate }}
             </time>
-            <span aria-hidden="true"> &middot; </span>
-            <span>6 phút đọc</span>
-            <span>{{ getTags(post) }}</span>
+            <!-- <span aria-hidden="true"> &middot; </span> -->
+            <!-- <span>6 phút đọc</span> -->
           </div>
         </div>
+      </div>
+      <div display="flex" grid="gap-2">
+        <span v-for="tag in getTags(post)" :key="tag">{{ tag }}</span>
       </div>
     </article>
   </div>
@@ -47,12 +55,15 @@
 <script setup lang="ts">
 import { navigate } from 'vite-plugin-ssr/client/router';
 
+import { breakpoints } from '@/composables/useBreakPoints';
 import { formatDate } from '@/utils/date';
 import { getTags, normalizeHtmlTag } from '@/utils/normalize';
 
 const props = defineProps<{
   posts: Post[];
 }>();
+
+const is2Xl = breakpoints.smaller('2xl').value;
 
 const onClick = (slug: string) => {
   navigate(`/p/${slug}`);
