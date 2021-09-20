@@ -2,6 +2,9 @@
   p {
     @apply mb-6 text-gray-600 prose-lg;
   }
+  a {
+    @apply text-blue-400 underline;
+  }
   h2,
   h3 {
     @apply mb-4 text-3xl text-gray-700;

@@ -10,7 +10,7 @@
             <p>Cuộc sống không thiếu gì ngoài bug</p>
           </div>
         </Link>
-        <ul class="flex flex-row ml-auto">
+        <ul class="flex-row ml-auto hidden xl:flex">
           <li v-for="category in categories" :key="category.ID" class="px-3">
             <Link
               :to="`/c/${category.slug}`"

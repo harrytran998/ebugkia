@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto grid gap-6 grid-cols-4 justify-center">
+  <div container="~" m="x-auto" grid="~ gap-2 cols-1 xl:gap-6 xl:cols-4" justify="center">
     <article
       v-for="post in posts"
       :key="post.ID"

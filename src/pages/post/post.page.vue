@@ -1,6 +1,6 @@
 <template>
   <div container="~" m="x-auto" grid="~ cols-6">
-    <div grid="col-span-4">
+    <div grid="col-span-6 xl:col-span-4">
       <div class="mb-6">
         <h1 ref="titleRef" class="font-bold mb-4 text-gray-700 text-4xl">
           {{ normalizeHtmlTag(post.title) }}
